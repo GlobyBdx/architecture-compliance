@@ -1,0 +1,35 @@
+plugins {
+    id 'java-gradle-plugin'
+    id 'maven-publish'
+}
+
+group = 'fr.ubordeaux.ddd'
+version = '1.0.0'
+
+publishing {
+    repositories {
+        mavenLocal()
+    }
+    publications {
+        mavenJava(MavenPublication) {
+            from components.java
+            group project.group
+            artifactId 'architecture-compliance'
+            version project.version
+        }
+    }
+}
+
+repositories {
+    jcenter()
+}
+
+dependencies {
+    compile(
+        gradleApi(),
+        'com.google.code.gson:gson:2.8.2',
+        'com.googlecode.json-simple:json-simple:1.1.1',
+        'com.tngtech.archunit:archunit-junit4:0.10.2',
+        'fr.inria.gforge.spoon:spoon-core:7.3.0'
+    )
+}

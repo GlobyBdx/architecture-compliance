@@ -1,0 +1,129 @@
+plugins {
+    id 'java-gradle-plugin'
+}
+
+import fr.ubordeaux.ddd.plugin.CompliancePlugin
+apply plugin: CompliancePlugin
+
+compliance {
+    description {
+        // paths = ['/path/to/description']
+        // fromPackages = false
+        // asXml = false
+    }
+    project {
+        directoryPath = '/path/to/project/'
+        // folderPath = 'src/main/java'
+        // packages = ['']
+    }
+    syntax {
+    	classes {
+            // aggregate = 'fr.ubordeaux.ddd.annotations.classes.Aggregate'
+            // entity = 'fr.ubordeaux.ddd.annotations.classes.Entity'
+            // factory = 'fr.ubordeaux.ddd.annotations.classes.Factory'
+            // repository = 'fr.ubordeaux.ddd.annotations.classes.Repository'
+            // service = 'fr.ubordeaux.ddd.annotations.classes.Service'
+            // valueObject = 'fr.ubordeaux.ddd.annotations.classes.ValueObject'
+            // areAnnotations = true
+        }
+    	fields {
+            // entityId = 'fr.ubordeaux.ddd.annotations.fields.EntityID'
+            // immutable = 'fr.ubordeaux.ddd.annotations.fields.Immutable'
+            // areAnnotations = true
+        }
+    	methods {
+            // getter = 'fr.ubordeaux.ddd.annotations.methods.Getter'
+            // setter = 'fr.ubordeaux.ddd.annotations.methods.Setter'
+            // areAnnotations = true
+        }
+    	packages {
+            // anticorruption = 'fr.ubordeaux.ddd.annotations.packages.Anticorruption'
+            // application = 'fr.ubordeaux.ddd.annotations.packages.Application'
+            // domain = 'fr.ubordeaux.ddd.annotations.packages.Domain'
+            // infrastructure = 'fr.ubordeaux.ddd.annotations.packages.Infrastructure'
+            // presentation = 'fr.ubordeaux.ddd.annotations.packages.Presentation'
+            // areAnnotations = true
+        }
+    }
+    rules = [
+        // 'rulesMayNotBeFound',
+        'anticorruptionLayerClassesMustNotResideInAnotherLayer',
+        'applicationLayerClassesMustNotResideInAnotherLayer',
+        'domainLayerClassesMustNotResideInAnotherLayer',
+        'infrastructureLayerClassesMustNotResideInAnotherLayer',
+        'presentationLayerClassesMustNotResideInAnotherLayer',
+        'anticorruptionLayerDependenciesMustBeRespected',
+        'applicationLayerDependenciesMustBeRespected',
+        'infrastructureLayerDependenciesMustBeRespected',
+        'presentationLayerDependenciesMustBeRespected',
+        'aggregatesMustAlsoBeEntities',
+        // 'aggregatesMustResideInDomainLayer',
+        // 'aggregatesMustNotAlsoBeFactories',
+        // 'aggregatesMustNotAlsoBeRepositories',
+        // 'aggregatesMustNotAlsoBeServices',
+        // 'aggregatesMustNotAlsoBeValueObjects',
+        // 'aggregatesMustHaveAtLeastOneEntityId',
+        // 'aggregatesMustOverrideEqualsMethodAccessingAllEntityIds',
+        // 'aggregatesMustOverrideHashCodeMethodAccessingAllEntityIds',
+        // 'aggregatesMustOverrideToStringMethodAccessingAllEntityIds',
+        'aggregatesInternalObjectsMustOnlyBeExternallyAccessedFromOwnerAggregate',
+        'aggregatesInternalObjectsMustOnlyBeExternallyInstantiatedByOwnerAggregateFactory',
+        'entitiesMustResideInDomainLayer',
+        'entitiesMustNotAlsoBeFactories',
+        'entitiesMustNotAlsoBeRepositories',
+        'entitiesMustNotAlsoBeServices',
+        'entitiesMustNotAlsoBeValueObjects',
+        'entitiesMustHaveAtLeastOneEntityId',
+        'entitiesMustOverrideEqualsMethodAccessingAllEntityIds',
+        'entitiesMustOverrideHashCodeMethodAccessingAllEntityIds',
+        'entitiesMustOverrideToStringMethodAccessingAllEntityIds',
+        'entityIdsMustOnlyBeDeclaredInEntities',
+        'entityIdsMustBePrivate',
+        // 'entityIdsMustBeFinal',
+        // 'entityIdsMustBeImmutables',
+        'entityIdsMustHavePrivateSetters',
+        'entityIdsMustHaveSpecificGetters',
+        'entityIdsMustHaveSpecificAccesses',
+        'factoriesMustResideInDomainLayer',
+        'factoriesMustNotAlsoBeAggregates',
+        'factoriesMustNotAlsoBeEntities',
+        'factoriesMustNotAlsoBeRepositories',
+        'factoriesMustNotAlsoBeServices',
+        'factoriesMustNotAlsoBeValueObjects',
+        'factoriesMustHaveNonPrivateMethodsWithSameReturnType',
+        'factoriesMustAccessAtLeastOneConstructorFromEntityValueObject',
+        'repositoriesMustResideInInfrastructureLayer',
+        'repositoriesMustNotAlsoBeAggregates',
+        'repositoriesMustNotAlsoBeEntities',
+        'repositoriesMustNotAlsoBeFactories',
+        'repositoriesMustNotAlsoBeServices',
+        'repositoriesMustNotAlsoBeValueObjects',
+        'repositoriesMustImplementInterfaceInDomainLayer',
+        'repositoriesMustAccessAtLeastOneEntityValueObject',
+        'servicesMustResideInApplicationDomainInfrastructureLayer',
+        'servicesMustNotAlsoBeAggregates',
+        'servicesMustNotAlsoBeEntities',
+        'servicesMustNotAlsoBeFactories',
+        'servicesMustNotAlsoBeRepositories',
+        'servicesMustNotAlsoBeValueObjects',
+        'servicesFieldsMustBeFinal',
+        'servicesMustImplementInterfaceInSameLayer',
+        'valueObjectsMustResideInDomainLayer',
+        'valueObjectsMustNotAlsoBeAggregates',
+        'valueObjectsMustNotAlsoBeEntities',
+        'valueObjectsMustNotAlsoBeFactories',
+        'valueObjectsMustNotAlsoBeRepositories',
+        'valueObjectsMustNotAlsoBeServices',
+        'valueObjectsMustHaveAtLeastOneField',
+        'valueObjectsMustOverrideEqualsMethodAccessingAllFields',
+        'valueObjectsMustOverrideHashCodeMethodAccessingAllFields',
+        'valueObjectsMustOverrideToStringMethodAccessingAllFields',
+        'valueObjectsFieldsMustBePrivate',
+        // 'valueObjectsFieldsMustBeFinal',
+        // 'valueObjectsFieldsMustBeImmutables',
+        'valueObjectsFieldsMustHavePrivateSetters',
+        'valueObjectsFieldsMustHaveSpecificGetters',
+        'valueObjectsFieldsMustHaveSpecificAccesses',
+    ]
+    // fixes = false
+}
