@@ -90,11 +90,14 @@ public class FactoryRules {
                     .as("Classes named with " + PluginConfiguration.getSyntax().getClasses().getFactory()
                             + " should have non-private methods with the same return type"));
 
-    public final ArchRule factoriesMustAccessAtLeastOneConstructorFromEntityValueObject =
+    public final ArchRule factoriesMustAccessAtLeastOneConstructorFromAggregateEntityValueObject =
             ((PluginConfiguration.getSyntax().getClasses().areAnnotations()) ?
                     ArchRuleDefinition.classes()
                     .that(ClassUtils.areAnnotatedWith(PluginConfiguration.getSyntax().getClasses().getFactory()))
                     .should(ClassUtils.accessAtLeastOneConstructorFromAnyClass(
+                            PluginConfiguration.getSyntax().getClasses().areAnnotations(),
+                            PluginConfiguration.getSyntax().getClasses().getAggregate()))
+                    .orShould(ClassUtils.accessAtLeastOneConstructorFromAnyClass(
                             PluginConfiguration.getSyntax().getClasses().areAnnotations(),
                             PluginConfiguration.getSyntax().getClasses().getEntity()))
                     .orShould(ClassUtils.accessAtLeastOneConstructorFromAnyClass(
@@ -107,6 +110,9 @@ public class FactoryRules {
                     : ArchRuleDefinition.classes()
                     .that(ClassUtils.areNamedWith(PluginConfiguration.getSyntax().getClasses().getFactory()))
                     .should(ClassUtils.accessAtLeastOneConstructorFromAnyClass(
+                            PluginConfiguration.getSyntax().getClasses().areAnnotations(),
+                            PluginConfiguration.getSyntax().getClasses().getAggregate()))
+                    .orShould(ClassUtils.accessAtLeastOneConstructorFromAnyClass(
                             PluginConfiguration.getSyntax().getClasses().areAnnotations(),
                             PluginConfiguration.getSyntax().getClasses().getEntity()))
                     .orShould(ClassUtils.accessAtLeastOneConstructorFromAnyClass(

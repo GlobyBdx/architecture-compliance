@@ -98,11 +98,14 @@ public class RepositoryRules {
                             + ((PluginConfiguration.getSyntax().getPackages().areAnnotations()) ? "annotated" : "named")
                             + " with " + PluginConfiguration.getSyntax().getPackages().getDomain()));
 
-    public final ArchRule repositoriesMustAccessAtLeastOneEntityValueObject =
+    public final ArchRule repositoriesMustAccessAtLeastOneAggregateEntityValueObject =
             ((PluginConfiguration.getSyntax().getClasses().areAnnotations()) ?
                     ArchRuleDefinition.classes()
                     .that(ClassUtils.areAnnotatedWith(PluginConfiguration.getSyntax().getClasses().getRepository()))
                     .should(ClassUtils.accessAtLeastOneClass(
+                            PluginConfiguration.getSyntax().getClasses().areAnnotations(),
+                            PluginConfiguration.getSyntax().getClasses().getAggregate()))
+                    .orShould(ClassUtils.accessAtLeastOneClass(
                             PluginConfiguration.getSyntax().getClasses().areAnnotations(),
                             PluginConfiguration.getSyntax().getClasses().getEntity()))
                     .orShould(ClassUtils.accessAtLeastOneClass(
@@ -115,6 +118,9 @@ public class RepositoryRules {
                     : ArchRuleDefinition.classes()
                     .that(ClassUtils.areNamedWith(PluginConfiguration.getSyntax().getClasses().getRepository()))
                     .should(ClassUtils.accessAtLeastOneClass(
+                            PluginConfiguration.getSyntax().getClasses().areAnnotations(),
+                            PluginConfiguration.getSyntax().getClasses().getAggregate()))
+                    .orShould(ClassUtils.accessAtLeastOneClass(
                             PluginConfiguration.getSyntax().getClasses().areAnnotations(),
                             PluginConfiguration.getSyntax().getClasses().getEntity()))
                     .orShould(ClassUtils.accessAtLeastOneClass(
