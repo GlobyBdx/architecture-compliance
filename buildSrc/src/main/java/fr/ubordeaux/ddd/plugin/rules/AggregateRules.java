@@ -62,7 +62,7 @@ public class AggregateRules {
                     PluginConfiguration.getSyntax().getClasses().areAnnotations(),
                     PluginConfiguration.getSyntax().getClasses().getRepository());
 
-    public final ArchRule aggregatessMustNotAlsoBeServices =
+    public final ArchRule aggregatesMustNotAlsoBeServices =
             ClassRules.shouldNotAlsoBe(
                     ArchRuleDefinition.classes(),
                     PluginConfiguration.getSyntax().getClasses().areAnnotations(),

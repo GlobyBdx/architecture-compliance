@@ -78,6 +78,7 @@ compliance {
         'entitiesMustOverrideHashCodeMethodAccessingAllEntityIds',
         'entitiesMustOverrideToStringMethodAccessingAllEntityIds',
         'entityIdsMustOnlyBeDeclaredInEntities',
+        'entityIdsMustOnlyBeDeclaredInAggregatesEntities',
         'entityIdsMustBePrivate',
         // 'entityIdsMustBeFinal',
         // 'entityIdsMustBeImmutables',

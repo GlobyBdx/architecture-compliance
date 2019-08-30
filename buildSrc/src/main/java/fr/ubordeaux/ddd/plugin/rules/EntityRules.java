@@ -112,6 +112,15 @@ public class EntityRules {
                     PluginConfiguration.getSyntax().getClasses().areAnnotations(),
                     PluginConfiguration.getSyntax().getClasses().getEntity());
 
+    public final ArchRule entityIdsMustOnlyBeDeclaredInAggregatesEntities =
+            FieldRules.shouldOnlyBeDeclaredInClasses(
+                    ArchRuleDefinition.fields(),
+                    PluginConfiguration.getSyntax().getFields().areAnnotations(),
+                    PluginConfiguration.getSyntax().getFields().getEntityId(),
+                    PluginConfiguration.getSyntax().getClasses().areAnnotations(),
+                    PluginConfiguration.getSyntax().getClasses().getAggregate(),
+                    PluginConfiguration.getSyntax().getClasses().getEntity());
+
     public final ArchRule entityIdsMustBePrivate =
             FieldRules.shouldBePrivate(
                     ArchRuleDefinition.fields(),

@@ -130,7 +130,17 @@ public final class QuickFixSelector {
 
         this.sets.put("entityIdsMustOnlyBeDeclaredInEntities",
                 (this.syntax.getFields().areAnnotations()) ?
-                        this.group(new FieldAnnotationRemoval(this.syntax.getFields().getEntityId()))
+                        this.group(
+                                new ClassAnnotationInclusion(this.syntax.getClasses().getEntity()),
+                                new FieldAnnotationRemoval(this.syntax.getFields().getEntityId()))
+                        : this.group());
+
+        this.sets.put("entityIdsMustOnlyBeDeclaredInAggregatesEntities",
+                (this.syntax.getFields().areAnnotations()) ?
+                        this.group(
+                                new ClassAnnotationInclusion(this.syntax.getClasses().getAggregate()),
+                                new ClassAnnotationInclusion(this.syntax.getClasses().getEntity()),
+                                new FieldAnnotationRemoval(this.syntax.getFields().getEntityId()))
                         : this.group());
 
         this.sets.put("entityIdsMustBePrivate",

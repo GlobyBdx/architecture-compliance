@@ -41,7 +41,9 @@ public final class Project {
         this.packages = packages;
         this.importer = new ProjectImporter(this);
         this.classes = null;
-        this.update();
+        if (this.directoryPath != null) {
+            this.update();
+        }
     }
 
     public String getDirectoryPath() {
