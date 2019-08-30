@@ -32,4 +32,9 @@ dependencies {
         'com.tngtech.archunit:archunit-junit4:0.10.2',
         'fr.inria.gforge.spoon:spoon-core:7.3.0'
     )
+    testCompile(
+        'com.google.guava:guava:18.0',
+        'com.tngtech.archunit:archunit-junit4:0.10.2',
+        'org.assertj:assertj-core:3.11.1'
+    )
 }

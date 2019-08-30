@@ -197,7 +197,8 @@ public final class FieldUtils {
             Set<JavaClass> internalClasses = getInternalClasses(item);
             for (JavaClass internalClass : internalClasses) {
                 for (JavaAccess<?> access : internalClass.getAccessesToSelf()) {
-                    if (!internalClasses.contains(access.getOriginOwner())) {
+                    if (!internalClasses.contains(access.getOriginOwner())
+                            && !access.getOriginOwner().equals(item.getOwner())) {
                         String message = item.getDescription() + " internal class " + internalClass.getFullName()
                         + " is externally accessed by class " + access.getOriginOwner().getFullName();
                         events.add(SimpleConditionEvent.violated(item, message));
