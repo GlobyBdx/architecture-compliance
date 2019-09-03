@@ -36,14 +36,12 @@ public final class Project {
     private JavaClasses classes;
 
     public Project(String directoryPath, String folderPath, String[] packages) {
-        this.directoryPath = directoryPath;
+        this.directoryPath = directoryPath == null ?  System.getProperty("user.dir") : directoryPath;
         this.folderPath = folderPath;
         this.packages = packages;
         this.importer = new ProjectImporter(this);
         this.classes = null;
-        if (this.directoryPath != null) {
-            this.update();
-        }
+        this.update();
     }
 
     public String getDirectoryPath() {
